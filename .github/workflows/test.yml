@@ -12,7 +12,7 @@ jobs:
     concurrency:
       group: >-
         ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}-${{
-        github.job }}-${{  matrix.os }}
+        'default-only' }}-${{  matrix.os }}
       cancel-in-progress: true
     runs-on: ${{ matrix.os }}
     strategy:
@@ -30,7 +30,7 @@ jobs:
     concurrency:
       group: >-
         ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}-${{
-        github.job }}-${{  matrix.os }}
+        'packages-changed' }}-${{  matrix.os }}
       cancel-in-progress: true
     runs-on: ${{ matrix.os }}
     strategy:
@@ -68,7 +68,7 @@ jobs:
     concurrency:
       group: >-
         ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}-${{
-        github.job }}-${{  matrix.os }}
+        'root-dir-variations' }}-${{  matrix.os }}
       cancel-in-progress: true
     runs-on: ${{ matrix.os }}
     env:

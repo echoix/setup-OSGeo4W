@@ -9,6 +9,9 @@ inputs:
       List of OSGeo4W packages to install.
       Use newlines, spaces, or commas in between package names.
     required: false
+    default: |
+      base
+
   root:
     description: Root installation directory, by default C:\OSGeo4W.
     required: false

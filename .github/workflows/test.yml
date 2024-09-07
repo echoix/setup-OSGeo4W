@@ -60,6 +60,7 @@ jobs:
             proj-devel,
             python3-core
             python3-numpy
+            python3-pip
             python3-ply
             python3-pytest
             python3-pywin32   python3-six

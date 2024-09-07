@@ -20,18 +20,27 @@
     "dpkg",
     "encryptable",
     "fseventsd",
+    "ionide",
     "megalinter",
+    "msix",
     "osgeo",
     "oxsecurity",
     "pwsh",
     "stackdump",
+    "stefanzweifel",
     "timemachine",
     "venv"
   ],
   "ignoreWords": [
     "[Dd]esktop",
+    "apdisk",
+    "autoaccept",
+    "donotpresent",
     "ehthumbs",
-    "icns"
+    "endgroup",
+    "esktop",
+    "icns",
+    "mergetool"
   ],
   "version": "0.2"
 }

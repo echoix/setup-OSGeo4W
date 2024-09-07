@@ -113,6 +113,7 @@ jobs:
           path: |
             megalinter-reports
             mega-linter.log
+          include-hidden-files: true
 
       # Create pull request if applicable
       # (for now works only on PR from same repository, not from forks)

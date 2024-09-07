@@ -1,0 +1,112 @@
+---
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  default:
+    concurrency:
+      group: >-
+        ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}-${{
+        'default-only' }}-${{  matrix.os }}
+      cancel-in-progress: true
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - windows-2019
+          - windows-2022
+          - windows-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - name: Setup OSGeo4W environment
+        uses: ./
+      - run: o-help
+        shell: cmd /D /E:ON /V:OFF /S /C "CALL C:/OSGeo4W/OSGeo4W.bat "{0}""
+  packages:
+    concurrency:
+      group: >-
+        ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}-${{
+        'packages-changed' }}-${{  matrix.os }}
+      cancel-in-progress: true
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - windows-2019
+          - windows-2022
+          - windows-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - name: Setup OSGeo4W environment
+        uses: ./
+        with:
+          # Using litteral style to have multiline strings, and keeping a single final newline
+          # See https://yaml-multiline.info/
+          packages: |
+            cairo-devel
+            freetype-devel
+            gdal-devel		,geos-devel	libjpeg-turbo-devel
+            liblas-devel
+            libpng-devel,libpq-devel
+            libtiff-devel
+            netcdf-devel
+            proj-devel,
+            python3-core
+            python3-numpy
+            python3-pip
+            python3-ply
+            python3-pytest
+            python3-pywin32   python3-six
+            python3-wxpython
+            sqlite3-devel,\
+            zstd-devel
+      - run: o-help
+        shell: cmd /D /E:ON /V:OFF /S /C "CALL C:/OSGeo4W/OSGeo4W.bat "{0}""
+      - run: pip install pytest-timeout
+        shell: cmd /D /E:ON /V:OFF /S /C "CALL C:/OSGeo4W/OSGeo4W.bat "{0}""
+  root:
+    concurrency:
+      group: >-
+        ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}-${{
+        'root-dir-variations' }}-${{  matrix.os }}-${{ matrix.root-dir }}-${{ matrix.pkg-dir }}
+      cancel-in-progress: true
+    runs-on: ${{ matrix.os }}
+    env:
+      TEST_O4W_ROOT: ${{ matrix.root-dir }}
+    strategy:
+      matrix:
+        os:
+          - windows-2019
+          - windows-2022
+          - windows-latest
+        root-dir:
+          - "C:\\OSGeo4W"
+          - "D:\\OSGeo4W"
+          - "D:/OSGeo4W"
+          - "C:/otherFolder/"
+        pkg-dir:
+          - "${{ github.workspace }}/OSGeo4W_pkg"
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - name: Setup OSGeo4W environment
+        uses: ./
+        with:
+          root: ${{ matrix.root-dir }}
+          package-dir: ${{ matrix.pkg-dir }}
+          # Using line folding replacing newlines by a space, and striping the final newlines
+          # See https://yaml-multiline.info/
+          packages: >-
+            grass-dev
+            saga
+      - run: o-help
+        shell: cmd /D /E:ON /V:OFF /S /C "CALL %TEST_O4W_ROOT%/OSGeo4W.bat "{0}""
+      - run: pip install pytest-timeout
+        shell: cmd /D /E:ON /V:OFF /S /C "CALL %TEST_O4W_ROOT%/OSGeo4W.bat "{0}""

@@ -46,7 +46,7 @@ if ($packages.Count -gt 0) {
     $args_ += '--packages' # Specify packages to install
     $args_ += $packages -Join (',')
 }
-Write-Host -ForegroundColor Blue "Selected $($packages.Count) packages:"
+Write-Host "$($PSStyle.Foreground.Blue)Selected $($packages.Count) packages:$($PSStyle.Reset)"
 $packages | Format-Table
 echo "::endgroup::"
 Get-PSReadLineOption
@@ -54,6 +54,6 @@ Get-PSReadLineOption
 echo "::group::Run setup"
 echo "Setup executable is $setup"
 "Command to execute:"
-Write-Host -ForegroundColor Blue "& $setup $args_ | Out-Default"
+Write-Host "$($PSStyle.Foreground.Blue)& $setup $args_ | Out-Default$($PSStyle.Reset)"
 & $setup $args_ | Out-Default
 echo "::endgroup::"

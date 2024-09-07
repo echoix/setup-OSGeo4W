@@ -47,7 +47,7 @@ jobs:
       - name: Setup OSGeo4W environment
         uses: ./
         with:
-          # Using litteral style to have multiline strings, and keeping a single final newline
+          # Using literal style to have multiline strings, and keeping a single final newline
           # See https://yaml-multiline.info/
           packages: |
             cairo-devel

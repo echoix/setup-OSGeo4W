@@ -49,7 +49,6 @@ if ($packages.Count -gt 0) {
 Write-Host "$($PSStyle.Foreground.Blue)Selected $($packages.Count) packages:$($PSStyle.Reset)"
 $packages | Format-Table
 Write-Output "::endgroup::"
-Get-PSReadLineOption
 
 Write-Output "::group::Run setup"
 Write-Output "Setup executable is $setup"

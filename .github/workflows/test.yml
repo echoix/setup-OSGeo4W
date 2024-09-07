@@ -50,7 +50,7 @@ jobs:
           packages: |
             cairo-devel
             freetype-devel
-            gdal-develgeos-devel	libjpeg-turbo-devel
+            gdal-devel		,geos-devel	libjpeg-turbo-devel
             liblas-devel
             libpng-devel,libpq-devel
             libtiff-devel

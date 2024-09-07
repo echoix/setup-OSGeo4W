@@ -102,7 +102,7 @@ jobs:
 
       - name: Add GitHub step summary
         if: success() || failure()
-        run: cat megalinter-reports/megalinter-report.md >> ${GITHUB_STEP_SUMMARY}
+        run: cat megalinter-reports/megalinter-report.md >> "${GITHUB_STEP_SUMMARY}"
 
       # Upload MegaLinter artifacts
       - name: Archive production artifacts

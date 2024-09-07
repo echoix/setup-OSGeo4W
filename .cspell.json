@@ -1,0 +1,46 @@
+{
+  "ignorePaths": [
+    "**/.cspell.json",
+    "**/.git/**",
+    "**/.pnpm-lock.json",
+    "**/node_modules/**",
+    "**/vscode-extension/**",
+    ".vscode",
+    "megalinter",
+    "package-lock.json",
+    "report"
+  ],
+  "language": "en",
+  "noConfigSearch": true,
+  "words": [
+    "Choinière",
+    "Edouard",
+    "OSGeo",
+    "OSGeo4W",
+    "dpkg",
+    "encryptable",
+    "fseventsd",
+    "ionide",
+    "megalinter",
+    "msix",
+    "osgeo",
+    "oxsecurity",
+    "pwsh",
+    "stackdump",
+    "stefanzweifel",
+    "timemachine",
+    "venv"
+  ],
+  "ignoreWords": [
+    "[Dd]esktop",
+    "apdisk",
+    "autoaccept",
+    "donotpresent",
+    "ehthumbs",
+    "endgroup",
+    "esktop",
+    "icns",
+    "mergetool"
+  ],
+  "version": "0.2"
+}

@@ -22,6 +22,8 @@ jobs:
           - windows-2022
           - windows-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       - name: Setup OSGeo4W environment
         uses: ./
       - run: o-help
@@ -40,6 +42,8 @@ jobs:
           - windows-2022
           - windows-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       - name: Setup OSGeo4W environment
         uses: ./
         with:
@@ -87,6 +91,8 @@ jobs:
         pkg-dir:
           - "${{ github.workspace }}/OSGeo4W_pkg"
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       - name: Setup OSGeo4W environment
         uses: ./
         with:

@@ -95,6 +95,6 @@ jobs:
           packages: |
             grass-dev
       - run: o-help
-        shell: cmd /D /E:ON /V:OFF /S /C "CALL ${{ matrix.root-dir }}/OSGeo4W.bat "{0}""
+        shell: cmd /D /E:ON /V:OFF /S /C "CALL %TEST_O4W_ROOT%/OSGeo4W.bat "{0}""
       - run: pip install pytest-timeout
         shell: cmd /D /E:ON /V:OFF /S /C "CALL %TEST_O4W_ROOT%/OSGeo4W.bat "{0}""

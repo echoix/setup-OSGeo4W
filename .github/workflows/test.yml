@@ -23,7 +23,7 @@ jobs:
           - windows-latest
     steps:
       - name: Setup OSGeo4W environment
-        uses: .
+        uses: ./
       - run: o-help
         shell: cmd /D /E:ON /V:OFF /S /C "CALL C:/OSGeo4W/OSGeo4W.bat "{0}""
   packages:
@@ -41,7 +41,7 @@ jobs:
           - windows-latest
     steps:
       - name: Setup OSGeo4W environment
-        uses: .
+        uses: ./
         with:
           packages: |
             cairo-devel
@@ -88,7 +88,7 @@ jobs:
           - "${{ github.workspace }}/OSGeo4W_pkg"
     steps:
       - name: Setup OSGeo4W environment
-        uses: .
+        uses: ./
         with:
           root: ${{ matrix.root-dir }}
           package-dir: ${{ matrix.pkg-dir }}

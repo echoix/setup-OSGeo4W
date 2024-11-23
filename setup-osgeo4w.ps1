@@ -56,3 +56,13 @@ Write-Output "Setup executable is $setup"
 Write-Output "$($PSStyle.Foreground.Blue)& $setup $args_ | Out-Default$($PSStyle.Reset)"
 & $setup $args_ | Out-Default
 Write-Output "::endgroup::"
+
+$root_Path = "$env:INPUT_ROOT"
+$root_Path
+$root_PathValid = Test-Path -Path $root_Path -PathType Container
+$root_PathValid
+
+$osgeo4w_shell_Path = Join-Path -Path $root_Path -ChildPath "OSGeo4W.bat"
+$osgeo4w_shell_Path
+
+Write-Output "root=$($root_Path)" >> $Env:GITHUB_OUTPUT

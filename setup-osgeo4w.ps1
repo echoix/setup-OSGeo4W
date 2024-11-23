@@ -59,10 +59,17 @@ Write-Output "::endgroup::"
 
 $root_Path = "$env:INPUT_ROOT"
 $root_Path
-$root_PathValid = Test-Path -Path $root_Path -PathType Container
-$root_PathValid
+if (!(Test-Path -Path $root_Path -PathType Container)) {
+    Write-Output '::error title=Invalid root directory::The root directory does not exist after a successful installation.'
+    exit 1
+}
 
-$osgeo4w_shell_Path = Join-Path -Path $root_Path -ChildPath "OSGeo4W.bat"
+$osgeo4w_shell_Path = Join-Path -Path $root_Path -ChildPath 'OSGeo4W.bat' -Resolve
 $osgeo4w_shell_Path
+if (!(Test-Path -Path $osgeo4w_shell_Path -PathType Leaf)) {
+    Write-Output "::error title=Missing OSGeo4W shell::The OSGeo4W.bat file used for the OSGeo4W shell isn't found after a successful installation."
+    exit 1
+}
+
 
 Write-Output "root=$($root_Path)" >> $Env:GITHUB_OUTPUT

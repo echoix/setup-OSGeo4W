@@ -71,5 +71,18 @@ if (!(Test-Path -Path $osgeo4w_shell_Path -PathType Leaf)) {
     exit 1
 }
 
+$root_from_OSGeo4W = & $osgeo4w_shell_Path echo %OSGEO4W_ROOT%
+$root_from_OSGeo4W
+if (!(Test-Path -LiteralPath $root_from_OSGeo4W -PathType Container)) {
+    Write-Output '::error title=Invalid root directory::The root directory returned by the OSGeo4W shell does not exist.'
+    exit 1
+}
+$root_resolved = Resolve-Path -LiteralPath $root_from_OSGeo4W
+$root_resolved
+if (!(Test-Path -LiteralPath $root_resolved -PathType Container)) {
+    Write-Output '::error title=Invalid root directory::The root directory returned by the OSGeo4W shell could not be resolved.'
+    exit 1
+}
 
-Write-Output "root=$($root_Path)" >> $Env:GITHUB_OUTPUT
+Write-Output "root=$($root_resolved)" >> $Env:GITHUB_OUTPUT
+exit 0 

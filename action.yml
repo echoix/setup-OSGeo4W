@@ -30,10 +30,18 @@ inputs:
     description: Also upgrade installed packages
     required: false
     default: "true"
+
+outputs:
+  root:
+    description: >-
+      The root installation directory used.
+      Equivalent to the OSGEO4W_ROOT environment variable
+    value: ${{ steps.setup.outputs.root }}
 runs:
   using: "composite"
   steps:
     - name: Setup OSGeo4W environment
+      id: setup
       run: |-
         "Setup OSGeo4W environment action"
         . ${{ github.action_path }}/setup-osgeo4w.ps1

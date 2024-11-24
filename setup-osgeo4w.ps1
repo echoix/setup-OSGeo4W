@@ -56,3 +56,29 @@ Write-Output "Setup executable is $setup"
 Write-Output "$($PSStyle.Foreground.Blue)& $setup $args_ | Out-Default$($PSStyle.Reset)"
 & $setup $args_ | Out-Default
 Write-Output "::endgroup::"
+
+$root_Path = "$env:INPUT_ROOT"
+if (!(Test-Path -Path $root_Path -PathType Container)) {
+    Write-Output '::error title=Invalid root directory::The root directory does not exist after a successful installation.'
+    exit 1
+}
+
+$osgeo4w_shell_Path = Join-Path -Path $root_Path -ChildPath 'OSGeo4W.bat' -Resolve
+if (!(Test-Path -Path $osgeo4w_shell_Path -PathType Leaf)) {
+    Write-Output "::error title=Missing OSGeo4W shell::The OSGeo4W.bat file used for the OSGeo4W shell isn't found after a successful installation."
+    exit 1
+}
+
+$root_from_OSGeo4W = & $osgeo4w_shell_Path echo %OSGEO4W_ROOT%
+if (!(Test-Path -LiteralPath $root_from_OSGeo4W -PathType Container)) {
+    Write-Output '::error title=Invalid root directory::The root directory returned by the OSGeo4W shell does not exist.'
+    exit 1
+}
+$root_resolved = Resolve-Path -LiteralPath $root_from_OSGeo4W
+if (!(Test-Path -LiteralPath $root_resolved -PathType Container)) {
+    Write-Output '::error title=Invalid root directory::The root directory returned by the OSGeo4W shell could not be resolved.'
+    exit 1
+}
+
+Write-Output "root=$($root_resolved)" >> $Env:GITHUB_OUTPUT
+exit 0 

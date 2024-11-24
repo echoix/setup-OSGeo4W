@@ -25,7 +25,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Setup OSGeo4W environment
+        id: setup-osgeo4w
         uses: ./
+      - name: Display all outputs as JSON
+        run: |
+          echo "${{ toJSON(steps.setup-osgeo4w.outputs) }}"
       - run: o-help
         shell: cmd /D /E:ON /V:OFF /S /C "CALL C:/OSGeo4W/OSGeo4W.bat "{0}""
   packages:
@@ -45,6 +49,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Setup OSGeo4W environment
+        id: setup-osgeo4w
         uses: ./
         with:
           # Using literal style to have multiline strings, and keeping a single final newline
@@ -67,6 +72,9 @@ jobs:
             python3-wxpython
             sqlite3-devel,\
             zstd-devel
+      - name: Display all outputs as JSON
+        run: |
+          echo "${{ toJSON(steps.setup-osgeo4w.outputs) }}"
       - run: o-help
         shell: cmd /D /E:ON /V:OFF /S /C "CALL C:/OSGeo4W/OSGeo4W.bat "{0}""
       - run: pip install pytest-timeout
@@ -97,6 +105,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Setup OSGeo4W environment
+        id: setup-osgeo4w
         uses: ./
         with:
           root: ${{ matrix.root-dir }}
@@ -106,6 +115,9 @@ jobs:
           packages: >-
             grass-dev
             saga
+      - name: Display all outputs as JSON
+        run: |
+          echo "${{ toJSON(steps.setup-osgeo4w.outputs) }}"
       - run: o-help
         shell: cmd /D /E:ON /V:OFF /S /C "CALL %TEST_O4W_ROOT%/OSGeo4W.bat "{0}""
       - run: pip install pytest-timeout

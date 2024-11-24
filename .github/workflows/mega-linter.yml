@@ -16,6 +16,8 @@ on:
       - main
       - master
 
+permissions: {}
+
 # Comment env block if you do not want to apply fixes
 env:
   # Apply linter fixes configuration
@@ -44,9 +46,9 @@ jobs:
     # Give the default GITHUB_TOKEN write permission to commit and push, comment
     # issues, and post new Pull Requests; remove the ones you do not need
     permissions:
-      contents: write
-      issues: write
-      pull-requests: write
+      contents: read
+      issues: read
+      pull-requests: read
 
     steps:
       # Git Checkout

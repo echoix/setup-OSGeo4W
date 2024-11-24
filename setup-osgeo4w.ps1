@@ -81,4 +81,4 @@ if (!(Test-Path -LiteralPath $root_resolved -PathType Container)) {
 }
 
 Write-Output "root=$($root_resolved)" >> $Env:GITHUB_OUTPUT
-exit 0 
+exit 0

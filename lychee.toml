@@ -1,4 +1,4 @@
 # Remap URI matching pattern to different URI.
 remap = [
-    "https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb",
+    "https://packages.microsoft.com/config/ubuntu/\\$VERSION_ID/packages-microsoft-prod.deb https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb",
 ]

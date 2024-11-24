@@ -2,6 +2,9 @@
 name: Setup OSGeo4W environment
 description: Install OSGeo4W and OSGeo4W packages on Windows
 author: "Edouard Choinière"
+branding:
+  icon: download-cloud
+  color: green
 
 inputs:
   packages:

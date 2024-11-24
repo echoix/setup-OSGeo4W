@@ -37,13 +37,13 @@ Installing various packages available in the OSGeo4W repos, and using the OSGeo4
 
 ## Options
 
-| Name         | Description                                                                                                                                                                           | Default                                  |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| packages     | List of OSGeo4W packages to install. Use newlines, spaces, or commas in between package names.                                                                                        | base                                     |
-| root         | Root installation directory, by default C:\OSGeo4W.                                                                                                                                   | C:\OSGeo4W                               |
-| package-dir  | Location where to download packages. Using a folder in a faster drive, like D:\OSGeo4W_pkg, reduces installation time. Use a different folder than the one used for the `root` input. |                                          |
-| site         | Download site URL to use                                                                                                                                                              | "https://download.osgeo.org/osgeo4w/v2/" |
-| upgrade-also | Also upgrade installed packages                                                                                                                                                       | "true"                                   |
+| Name         | Description                                                                                                                                                                             | Default                                  |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| packages     | List of OSGeo4W packages to install. Use newlines, spaces, or commas in between package names                                                                                           | base                                     |
+| root         | Root installation directory                                                                                                                                                             | `C:\OSGeo4W`                             |
+| package-dir  | Location where to download packages. Using a folder in a faster drive, like `D:\OSGeo4W_pkg`, reduces installation time. Use a different folder than the one used for the `root` input. |                                          |
+| site         | Download site URL to use                                                                                                                                                                | "https://download.osgeo.org/osgeo4w/v2/" |
+| upgrade-also | Also upgrade installed packages                                                                                                                                                         | "true"                                   |
 
 ## Outputs
 

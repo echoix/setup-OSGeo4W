@@ -7,6 +7,8 @@ on:
       - main
   pull_request:
 
+permissions: {}
+
 jobs:
   default:
     concurrency:

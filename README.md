@@ -61,6 +61,9 @@ on:
     branches:
       - main
   pull_request:
+
+permissions: {}
+
 jobs:
   root:
     concurrency:

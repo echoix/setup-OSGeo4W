@@ -7,7 +7,7 @@
         "**/vscode-extension/**",
         ".vscode",
         "megalinter",
-        "package-lock.json", 
+        "package-lock.json",
         "report"
     ],
     "ignoreWords": [
@@ -26,11 +26,10 @@
     "version": "0.2",
     "words": [
         "Choinière",
-        "Edouard",
-        "OSGeo",
-        "OSGeo4W",
         "devel",
         "dpkg",
+        "echoix",
+        "Edouard",
         "encryptable",
         "freetype",
         "fseventsd",
@@ -44,6 +43,8 @@
         "msix",
         "numpy",
         "osgeo",
+        "OSGeo",
+        "OSGeo4W",
         "oxsecurity",
         "pwsh",
         "pytest",

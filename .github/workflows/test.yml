@@ -20,8 +20,8 @@ jobs:
     strategy:
       matrix:
         os:
-          - windows-2019
           - windows-2022
+          - windows-2025
           - windows-latest
     steps:
       - name: Checkout Code
@@ -44,8 +44,8 @@ jobs:
     strategy:
       matrix:
         os:
-          - windows-2019
           - windows-2022
+          - windows-2025
           - windows-latest
     steps:
       - name: Checkout Code
@@ -93,8 +93,8 @@ jobs:
     strategy:
       matrix:
         os:
-          - windows-2019
           - windows-2022
+          - windows-2025
           - windows-latest
         root-dir:
           - "C:\\OSGeo4W"

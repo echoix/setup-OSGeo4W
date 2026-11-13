@@ -25,3 +25,7 @@ MARKDOWN_SUMMARY_REPORTER: true
 GITHUB_COMMENT_REPORTER: false
 # Uncomment if you want MegaLinter to detect errors but not block CI to pass
 # DISABLE_ERRORS: true
+
+# Allow zizmor to use GITHUB_TOKEN for its online audits (tag lookups)
+ACTION_ZIZMOR_UNSECURED_ENV_VARIABLES:
+  - GITHUB_TOKEN

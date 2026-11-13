@@ -13,8 +13,7 @@ jobs:
   default:
     concurrency:
       group: >-
-        ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}-${{
-        'default-only' }}-${{  matrix.os }}
+        ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}-default-only-${{ matrix.os }}
       cancel-in-progress: true
     runs-on: ${{ matrix.os }}
     strategy:
@@ -26,19 +25,22 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Setup OSGeo4W environment
         id: setup-osgeo4w
         uses: ./
       - name: Display all outputs as JSON
+        env:
+          SETUP_OUTPUTS: ${{ toJSON(steps.setup-osgeo4w.outputs) }}
         run: |
-          echo "${{ toJSON(steps.setup-osgeo4w.outputs) }}"
+          echo "${SETUP_OUTPUTS}"
       - run: o-help
-        shell: cmd /D /E:ON /V:OFF /S /C "CALL C:/OSGeo4W/OSGeo4W.bat "{0}""
+        shell: cmd /D /E:ON /V:OFF /S /C "CALL C:/OSGeo4W/OSGeo4W.bat "{0}"" # zizmor: ignore[misfeature]
   packages:
     concurrency:
       group: >-
-        ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}-${{
-        'packages-changed' }}-${{  matrix.os }}
+        ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}-packages-changed-${{ matrix.os }}
       cancel-in-progress: true
     runs-on: ${{ matrix.os }}
     strategy:
@@ -50,6 +52,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Setup OSGeo4W environment
         id: setup-osgeo4w
         uses: ./
@@ -75,17 +79,18 @@ jobs:
             sqlite3-devel,\
             zstd-devel
       - name: Display all outputs as JSON
+        env:
+          SETUP_OUTPUTS: ${{ toJSON(steps.setup-osgeo4w.outputs) }}
         run: |
-          echo "${{ toJSON(steps.setup-osgeo4w.outputs) }}"
+          echo "${SETUP_OUTPUTS}"
       - run: o-help
-        shell: cmd /D /E:ON /V:OFF /S /C "CALL C:/OSGeo4W/OSGeo4W.bat "{0}""
+        shell: cmd /D /E:ON /V:OFF /S /C "CALL C:/OSGeo4W/OSGeo4W.bat "{0}"" # zizmor: ignore[misfeature]
       - run: pip install pytest-timeout
-        shell: cmd /D /E:ON /V:OFF /S /C "CALL C:/OSGeo4W/OSGeo4W.bat "{0}""
+        shell: cmd /D /E:ON /V:OFF /S /C "CALL C:/OSGeo4W/OSGeo4W.bat "{0}"" # zizmor: ignore[misfeature]
   root:
     concurrency:
       group: >-
-        ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}-${{
-        'root-dir-variations' }}-${{  matrix.os }}-${{ matrix.root-dir }}-${{ matrix.pkg-dir }}
+        ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}-root-dir-variations-${{ matrix.os }}-${{ matrix.root-dir }}-${{ matrix.pkg-dir }}
       cancel-in-progress: true
     runs-on: ${{ matrix.os }}
     env:
@@ -106,6 +111,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Setup OSGeo4W environment
         id: setup-osgeo4w
         uses: ./
@@ -118,9 +125,11 @@ jobs:
             grass-dev
             saga
       - name: Display all outputs as JSON
+        env:
+          SETUP_OUTPUTS: ${{ toJSON(steps.setup-osgeo4w.outputs) }}
         run: |
-          echo "${{ toJSON(steps.setup-osgeo4w.outputs) }}"
+          echo "${SETUP_OUTPUTS}"
       - run: o-help
-        shell: cmd /D /E:ON /V:OFF /S /C "CALL %TEST_O4W_ROOT%/OSGeo4W.bat "{0}""
+        shell: cmd /D /E:ON /V:OFF /S /C "CALL %TEST_O4W_ROOT%/OSGeo4W.bat "{0}"" # zizmor: ignore[misfeature]
       - run: pip install pytest-timeout
-        shell: cmd /D /E:ON /V:OFF /S /C "CALL %TEST_O4W_ROOT%/OSGeo4W.bat "{0}""
+        shell: cmd /D /E:ON /V:OFF /S /C "CALL %TEST_O4W_ROOT%/OSGeo4W.bat "{0}"" # zizmor: ignore[misfeature]

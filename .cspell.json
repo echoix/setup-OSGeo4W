@@ -54,6 +54,7 @@
     "timemachine",
     "venv",
     "wxpython",
-    "zstd"
+    "zstd",
+    "zizmor"
   ]
 }

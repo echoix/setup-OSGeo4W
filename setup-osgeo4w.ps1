@@ -40,11 +40,11 @@ if ("$env:INPUT_UPGRADE_ALSO".ToLowerInvariant().Trim() -eq 'true') {
 }
 
 Write-Output '::group::Selected packages'
-$packages = @($env:INPUT_PACKAGES -Split '[,\s\\]+' -match '\S')
+$packages = @($env:INPUT_PACKAGES -split '[,\s\\]+' -match '\S')
 $packages = $packages | Sort-Object | Get-Unique
 if ($packages.Count -gt 0) {
     $args_ += '--packages' # Specify packages to install
-    $args_ += $packages -Join (',')
+    $args_ += $packages -join (',')
 }
 Write-Output "$($PSStyle.Foreground.Blue)Selected $($packages.Count) packages:$($PSStyle.Reset)"
 $packages | Format-Table

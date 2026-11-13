@@ -119,3 +119,5 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/git,powershell,windows,linux,macos,visualstudiocode
 
 megalinter-reports/
+
+*.megalinter-setup.bak

@@ -55,6 +55,7 @@
     "venv",
     "wxpython",
     "zstd",
+    "artipacked",
     "zizmor"
   ]
 }
